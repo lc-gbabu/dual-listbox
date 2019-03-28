@@ -2,7 +2,7 @@
   "name": "dual-listbox",
   "version": "1.2.0",
   "description": "Dual listbox for multi-select elements",
-  "main": "dist/dual-listbox.js",
+  "main": "src/dual-listbox.js",
   "directories": {
     "test": "test"
   },
