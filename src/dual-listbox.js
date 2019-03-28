@@ -18,7 +18,7 @@ const SELECTED_MODIFIER = 'dual-listbox__item--selected';
  */
 class DualListbox {
     constructor(selector, options = {}) {
-        console.log('can see my changes here');
+        console.log('can see my changes hdddddere');
         this.setDefaults();
         this.selected = [];
         this.available = [];
@@ -300,8 +300,10 @@ class DualListbox {
      * Adds the actions to the search input.
      */
     _addSearchActions() {
-        this.search.addEventListener('change', (event) => this.searchLists(event.target.value, this.dualListbox));
-        this.search.addEventListener('keyup', (event) => this.searchLists(event.target.value, this.dualListbox));
+        this.searchAvailable.addEventListener('change', (event) => this.searchLists(event.target.value, this.availableList));
+        this.searchAvailable.addEventListener('keyup', (event) => this.searchLists(event.target.value, this.availableList));
+        this.searchSelected.addEventListener('change', (event) => this.searchLists(event.target.value, this.selectedList));
+        this.searchSelected.addEventListener('keyup', (event) => this.searchLists(event.target.value, this.selectedList));
     }
 
     /**
@@ -311,9 +313,9 @@ class DualListbox {
     _buildDualListbox(container) {
         this.select.style.display = 'none';
 
-        this.dualListBoxContainer.appendChild(this._createList(this.availableListTitle, this.availableList));
+        this.dualListBoxContainer.appendChild(this._createList(this.availableListTitle, this.availableList, this.searchAvailable));
         this.dualListBoxContainer.appendChild(this.buttons);
-        this.dualListBoxContainer.appendChild(this._createList(this.selectedListTitle, this.selectedList));
+        this.dualListBoxContainer.appendChild(this._createList(this.selectedListTitle, this.selectedList, this.searchSelected));
 
         //this.dualListbox.appendChild(this.search);
         this.dualListbox.appendChild(this.dualListBoxContainer);
@@ -324,10 +326,10 @@ class DualListbox {
     /**
      * Creates list with the header.
      */
-    _createList(header, list) {
+    _createList(header, list, searchElement) {
         let result = document.createElement('div');
         result.appendChild(header);
-        result.appendChild(this.search);
+        result.appendChild(searchElement);
         result.appendChild(list);
         return result;
     }
@@ -390,9 +392,12 @@ class DualListbox {
      * Creates the search input.
      */
     _createSearch() {
-        this.search = document.createElement('input');
-        this.search.classList.add(SEARCH_ELEMENT);
-        this.search.placeholder = this.searchPlaceholder;
+        this.searchAvailable = document.createElement('input');
+        this.searchAvailable.classList.add(SEARCH_ELEMENT);
+        this.searchAvailable.placeholder = this.searchPlaceholder;
+        this.searchSelected = document.createElement('input');
+        this.searchSelected.classList.add(SEARCH_ELEMENT);
+        this.searchSelected.placeholder = this.searchPlaceholder;
     }
 
     /**
