@@ -18,6 +18,7 @@ const SELECTED_MODIFIER = 'dual-listbox__item--selected';
  */
 class DualListbox {
     constructor(selector, options = {}) {
+        console.log('can see my changes here');
         this.setDefaults();
         this.selected = [];
         this.available = [];
@@ -314,7 +315,7 @@ class DualListbox {
         this.dualListBoxContainer.appendChild(this.buttons);
         this.dualListBoxContainer.appendChild(this._createList(this.selectedListTitle, this.selectedList));
 
-        this.dualListbox.appendChild(this.search);
+        //this.dualListbox.appendChild(this.search);
         this.dualListbox.appendChild(this.dualListBoxContainer);
 
         container.insertBefore(this.dualListbox, this.select);
@@ -326,6 +327,7 @@ class DualListbox {
     _createList(header, list) {
         let result = document.createElement('div');
         result.appendChild(header);
+        result.appendChild(this.search);
         result.appendChild(list);
         return result;
     }
